@@ -1,5 +1,6 @@
 package com.oru.oruerakproject.records.service;
 
+import com.oru.oruerakproject.records.dto.RatingsDto;
 import com.oru.oruerakproject.records.repository.RecordsRepository;
 import com.oru.oruerakproject.records.dto.RecordsDto;
 import com.oru.oruerakproject.records.entity.RecordsEntity;
@@ -75,5 +76,16 @@ public class recordsService {
                 .map(RecordsDto::fromEntity)  // Optional 내부 값을 DTO로 변환
                 .orElse(null); // 값이 없으면 null 반환
     }
+    // id에 따른 컬럼 찾아서 Entity -> DTO 변환
+    public RatingsDto getRecordRating(Long id) {
+        return recordsRepository.findById(id)
+                .map(RatingsDto::toRating)  //
+                .orElse(null); // 값이 없으면 null 반환
+    }
 
+    public RecordsEntity saveRating(RatingsDto dto, Long id) {
+        RecordsEntity idEntity = recordsRepository.findById(id);
+        RecordsEntity entity = RatingsDto.toRating(dto);
+        return recordsRepository.save(entity);
+    }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RecordsRepository extends JpaRepository<RecordsEntity, String> {
+public interface RecordsRepository extends JpaRepository<RecordsEntity, Long> {
 
     // 최근 등산기록 가져오기
     RecordsEntity findTopByUserIdOrderByHikeDateDesc(String userId);

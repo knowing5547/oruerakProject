@@ -54,4 +54,15 @@ public class RecordsEntity {
     @Column(name = "is_completed")
     private Boolean isCompleted;
 
+    // 별점 관련 3개 추가
+    @Column(name = "scenery_rating") // 경치 별점
+    private Double sceneryRating;
+
+    @Column(name = "trail_rating") // 등산로 별점
+    private Double trailRating;
+
+    @Column(name = "facility_rating") // 안내시설 별점
+    private Double facilityRating;
+
+
 }
