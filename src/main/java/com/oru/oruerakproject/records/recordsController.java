@@ -63,8 +63,8 @@ public class recordsController {
     public ResponseEntity createRating(
             @PathVariable Long id,
             @RequestBody RatingsDto dto) {
-        entity = recordsService.saveRating(dto);
-        return ResponseEntity.ok(entity);
+            recordsService.saveRating(dto, id);
+        return ResponseEntity.ok("별점 정보 기입완료");
     }
 
 

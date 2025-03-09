@@ -24,7 +24,7 @@ public class RatingsDto {
                 .build();
     }
     // DTO -> Entity
-    public static RecordsEntity toRating(RatingsDto dto) {
+    public static RecordsEntity fromRating(RatingsDto dto) {
         return RecordsEntity.builder()
                 .sceneryRating(dto.getSceneryRating())
                 .trailRating(dto.getTrailRating())

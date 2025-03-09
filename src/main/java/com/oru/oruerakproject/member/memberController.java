@@ -33,4 +33,19 @@ public class memberController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(null));
     }
+
+    // userId 넣으면 유저정보 다 주는 api
+    @PostMapping("/find-user-info/{userId}")
+    public ResponseEntity<?> getUserInfo(@PathVariable String userId) {
+        Optional<MemberDto> dto = memberservice.infoUserId(userId);
+        return ResponseEntity.ok(dto);
+    }
+
+    // 각 유저의 총 등산갯수 주는 api
+    @GetMapping("/count/{userId}")
+    public ResponseEntity<Integer> getUserHikingCount(@PathVariable String userId) {
+        int count = memberservice.getUserHikingCount(userId);
+        return ResponseEntity.ok(count);
+    }
+
 }

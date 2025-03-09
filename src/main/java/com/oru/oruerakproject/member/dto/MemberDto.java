@@ -29,4 +29,15 @@ public class MemberDto {
                 .build();
     }
 
+    public static MemberDto toMemberDto(MemberEntity entity) {
+        return MemberDto.builder()
+                .userId(entity.getUserId())
+                .phoneNumber(entity.getPhoneNumber())
+                .age(entity.getAge())
+                .sex(entity.getSex())
+                .height(entity.getHeight())
+                .weight(entity.getWeight())
+                .build();
+    }
+
 }

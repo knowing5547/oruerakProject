@@ -8,6 +8,7 @@ import com.oru.oruerakproject.unity.entitiy.CharactersEntitiy;
 import com.oru.oruerakproject.unity.entitiy.UserCharactersEntitiy;
 import com.oru.oruerakproject.unity.repository.CharactersRepository;
 import com.oru.oruerakproject.unity.repository.UserCharactersRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -84,8 +85,11 @@ public class recordsService {
     }
 
     public RecordsEntity saveRating(RatingsDto dto, Long id) {
-        RecordsEntity idEntity = recordsRepository.findById(id);
-        RecordsEntity entity = RatingsDto.toRating(dto);
+        Optional<RecordsEntity> idEntity = recordsRepository.findById(id);
+        RecordsEntity entity = idEntity.orElseThrow(() -> new EntityNotFoundException("ID로 기록을 찾을 수 없습니다: " + id));
+        entity.setSceneryRating(dto.getSceneryRating());
+        entity.setTrailRating(dto.getTrailRating());
+        entity.setFacilityRating(dto.getFacilityRating());
         return recordsRepository.save(entity);
     }
 }

@@ -20,4 +20,6 @@ public interface RecordsRepository extends JpaRepository<RecordsEntity, Long> {
 
     // 특정 등산기록 가져오기
     Optional<RecordsEntity> findByIdAndUserId(Long id, String userId);
+
+    int countByUserId(String userId);
 }
